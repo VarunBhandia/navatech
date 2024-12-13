@@ -1,5 +1,6 @@
 from fastapi import FastAPI
-from app.organization import controller
+from app.organization import controller as organization_controller
+from app.auth import controller as auth_controller
 
 app = FastAPI(
     title="Organization Management API",
@@ -9,14 +10,20 @@ app = FastAPI(
 
 # Include routers
 app.include_router(
-    controller.router, 
+    organization_controller.router, 
     prefix="/org", 
     tags=["Organization Management"]
 )
 
-@app.get("/")
-def read_root():
+app.include_router(
+    auth_controller.router, 
+    prefix="/auth", 
+    tags=["Auth"]
+)
+
+@app.get("/health-check")
+def health_check():
     """
     Health check endpoint
     """
-    return {"status": "healthy"}
+    return {"success": True}

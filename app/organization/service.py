@@ -10,11 +10,11 @@ class OrganizationService:
     def __init__(self): 
         gen = get_db()
         self.db: Session = next(gen)
-    
+            
     def create_organization_with_user(self, org_data: OrganizationCreate) -> Organization:
         existing_org = self.db.query(Organization).filter(Organization.name == org_data.organization_name).first()
         if existing_org:
-            raise OrganizationAlreadyExists("Organization already exists")
+            raise OrganizationAlreadyExists(org_data.organization_name)
         
         create_dynamic_database(org_data.organization_name)
         

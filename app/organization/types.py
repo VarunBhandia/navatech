@@ -1,7 +1,7 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, EmailStr, Field
 
 class OrganizationCreate(BaseModel):
-    email: str = Field(..., description="Admin email")
+    email: EmailStr = Field(..., description="Admin email")
     password: str = Field(..., min_length=8, description="Admin password")
     organization_name: str = Field(..., min_length=3, max_length=50)
 
