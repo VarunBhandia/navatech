@@ -45,14 +45,32 @@ uvicorn app.main:app --reload
 
 ### Docker Setup
 
-1. Build and run the services:
+1. Build the Docker image:
 ```bash
-docker-compose up --build
+docker build -t org-management-api .
 ```
 
-2. To stop the services:
+2. Run the Docker container:
 ```bash
-docker-compose down
+# Basic run
+docker run -p 8000:8000 org-management-api
+
+# Run with environment variables
+docker run -p 8000:8000 \
+    -e DATABASE_URL=postgresql://user:password@host/database \
+    -e SECRET_KEY=your_secret_key \
+    -e ALGORITHM=HS256 \
+    -e ACCESS_TOKEN_EXPIRE_MINUTES=30 \
+    org-management-api
+```
+
+3. Stop the running container:
+```bash
+# First, list running containers
+docker ps
+
+# Then stop the container using its CONTAINER ID or NAME
+docker stop <container_id_or_name>
 ```
 
 ## API Endpoints
@@ -84,29 +102,6 @@ Example response:
 {
   "success": true,
 }
-```
-
-## Docker Configuration
-
-### Dockerfile
-The project uses a multi-stage Dockerfile for efficient builds:
-- Base stage: Installs system dependencies
-- Build stage: Installs Python dependencies
-- Final stage: Runs the application
-
-### docker-compose.yml
-Defines services:
-- FastAPI application
-- PostgreSQL database
-- Optional services (Redis, Celery, etc.)
-
-### Docker Build Commands
-```bash
-# Build the image
-docker build -t org-management-api .
-
-# Run the container
-docker run -p 8000:8000 org-management-api
 ```
 
 ## Project Structure
