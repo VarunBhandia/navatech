@@ -145,5 +145,4 @@ navatech/
 
 
 ## Contact
-[varunbhandia@gmail.com]
-```
+varunbhandia@gmail.com
