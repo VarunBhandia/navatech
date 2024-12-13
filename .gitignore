@@ -1,0 +1,47 @@
+# Python bytecode files
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+.env/
+.venv/
+env/
+
+# Configuration and environment files
+*.env
+*.env.*
+
+# Logs and debug files
+*.log
+*.out
+*.err
+
+# Cache directories
+*.egg-info/
+.eggs/
+pip-wheel-metadata/
+*.egg
+
+# Python cache files
+*.pyc
+__pycache__/
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Build files
+build/
+dist/
+*.egg-info/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# FastAPI-specific
+instance/
+staticfiles/
